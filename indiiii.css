@@ -1,0 +1,232 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1c1c1c, #121212);
+    color: #ffffff;
+    line-height: 1.6;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(to bottom, #2b2b2b, #1c1c1c);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    color: #00d4ff;
+    text-shadow: 0 0 15px #00d4ff, 0 0 30px #008cff;
+    margin-bottom: 10px;
+  }
+  
+  .header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .header nav ul li a {
+    font-size: 1rem;
+    color: #00d4ff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .header nav ul li a:hover {
+    background: #00d4ff;
+    color: #121212;
+    box-shadow: 0 4px 10px rgba(0, 212, 255, 0.5);
+  }
+  
+  /* Section Styling */
+  .section {
+    margin: 20px auto;
+    padding: 30px;
+    max-width: 800px;
+    background: #1f1f1f;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  }
+  
+  .section h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    text-align: center;
+    color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .input-group label {
+    font-size: 1rem;
+    color: #b0bec5;
+  }
+  
+  input, textarea, button {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  textarea {
+    resize: none;
+    height: 120px;
+  }
+  
+  input, textarea {
+    background: #2b2b2b;
+    color: #ffffff;
+    border: 2px solid #333;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus, textarea:focus {
+    border-color: #00d4ff;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+  }
+  
+  button {
+    background: linear-gradient(45deg, #00d4ff, #008cff);
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background: linear-gradient(45deg, #008cff, #0048ff);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
+  }
+  
+  .secondary {
+    background: #444;
+    color: #fff;
+  }
+  
+  .secondary:hover {
+    background: #555;
+    box-shadow: 0 4px 15px rgba(100, 100, 100, 0.5);
+  }
+  
+  /* Loading Animation */
+  .loading {
+    text-align: center;
+    color: #ff9800;
+    font-size: 1.2rem;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Diagnosis Result */
+  .result {
+    margin-top: 20px;
+    padding: 20px;
+    background: #263238;
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    font-size: 1.1rem;
+  }
+  
+  /* Feedback Section */
+  .feedback {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .feedback h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #00d4ff;
+  }
+  
+  .feedback button {
+    margin: 5px;
+  }
+  
+  /* Dashboard */
+  .metrics {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .metric {
+    flex: 1;
+    min-width: 200px;
+    background: linear-gradient(145deg, #1a1a1a, #222222);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .metric:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+  }
+  
+  .metric h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #00d4ff;
+  }
+  
+  .metric p {
+    font-size: 1.5rem;
+    color: #ffffff;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to top, #1c1c1c, #121212);
+    border-top: 2px solid #444;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #b0bec5;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+  
+

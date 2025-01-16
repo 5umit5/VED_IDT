@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Doctor - Advanced</title>
+  <link rel="stylesheet" href="indiiii.css">
+</head>
+<body>
+  <header class="header">
+    <h1>AI Doctor</h1>
+    <nav>
+      <ul>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#diagnosis">Diagnosis</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="https://www.google.com/maps/search/hospitals+near+me" target="_blank">Hospitals Near Me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Section -->
+    <section id="login" class="section">
+      <h2>Login</h2>
+      <form id="loginForm" class="form">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </section>
+
+    <!-- Diagnosis Section -->
+    <section id="diagnosis" class="section">
+      <h2>AI Diagnosis</h2>
+      <div class="input-group">
+        <label for="symptoms">Describe Your Symptoms</label>
+        <textarea id="symptoms" placeholder="e.g., headache, fever, cough" rows="4"></textarea>
+        <button id="startVoiceInput" class="btn secondary">🎤 Voice Input</button>
+      </div>
+      <button id="getDiagnosis" class="btn">Get Diagnosis</button>
+      <div id="loadingIndicator" class="loading" hidden>Loading...</div>
+      <div id="diagnosisResult" class="result"></div>
+      <div id="feedbackSection" class="feedback" hidden>
+        <h3>Was this helpful?</h3>
+        <button id="feedbackYes" class="btn">👍 Yes</button>
+        <button id="feedbackNo" class="btn secondary">👎 No</button>
+      </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section">
+      <h2>Health Dashboard</h2>
+      <div id="healthMetrics" class="metrics">
+        <div class="metric">
+          <h3>Blood Pressure</h3>
+          <p>120/80 mmHg</p>
+        </div>
+        <div class="metric">
+          <h3>Heart Rate</h3>
+          <p id="heartRate">72 bpm</p>
+        </div>
+        <div class="metric">
+          <h3>Steps Today</h3>
+          <p id="stepsToday">8,000</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 AI Doctor. All rights reserved.</p>
+  </footer>
+
+  <script src="indiiiiiiiiii.js"></script>
+</body>
+</html>
+
+
