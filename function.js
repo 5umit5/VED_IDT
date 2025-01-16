@@ -1,33 +1,64 @@
-
-const AI_API_URL = "https://api.openai.com/v1/completions";
-const API_KEY = "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"; 
-
-
 const showLoading = (isVisible) => {
-  document.getElementById("loadingIndicator").hidden = !isVisible;
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  if (isVisible) {
+    loadingIndicator.hidden = false;
+  } else {
+    loadingIndicator.hidden = true;
+  }
+};
+
+const showDiagnosisResult = (diagnosis) => {
+  const resultDiv = document.getElementById("diagnosisResult");
+  resultDiv.innerHTML = `
+    <h3>Diagnosis Result:</h3>
+    <p>${diagnosis}</p>
+  `;
+  document.getElementById("feedbackSection").hidden = false;
+};
+
+const showError = () => {
+  const resultDiv = document.getElementById("diagnosisResult");
+  resultDiv.innerHTML = `
+    <p>We encountered an issue while processing your symptoms. Please try again.</p>
+  `;
+  document.getElementById("feedbackSection").hidden = true;
 };
 
 
-document.getElementById("loginForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  if (username && password) {
-    alert(`Welcome back, ${username}!`);
-  } else {
-    alert("Please fill in all fields.");
+const diagnose = (symptoms) => {
+  if (symptoms.includes("fever") && symptoms.includes("cough") && symptoms.includes("fatigue")) {
+    return "You may have the flu. Please consult with a healthcare provider for a proper diagnosis.";
   }
-});
 
+  if (symptoms.includes("headache") && symptoms.includes("nausea") && symptoms.includes("sensitivity to light")) {
+    return "You may be experiencing a migraine. It's recommended to rest in a dark room and hydrate.";
+  }
 
-document.getElementById("getDiagnosis").addEventListener("click", async () => {
-  const symptoms = document.getElementById("symptoms").value;
+  if (symptoms.includes("chest pain") && symptoms.includes("shortness of breath")) {
+    return "This could be a sign of a heart condition. Please seek emergency medical help immediately.";
+  }
+
+  if (symptoms.includes("sore throat") && symptoms.includes("runny nose") && symptoms.includes("cough")) {
+    return "You may have a cold. Drink plenty of fluids and get rest.";
+  }
+
+  if (symptoms.includes("stomach pain") && symptoms.includes("vomiting") && symptoms.includes("diarrhea")) {
+    return "You could have food poisoning or a stomach virus. Stay hydrated and rest.";
+  }
+  if (symptoms.includes("fever") && symptoms.includes("cough") && symptoms.includes("fatigue")) {
+    return "You may have the flu. Please consult with a healthcare provider for a proper diagnosis.";
+  }
+
+  return "You may have migraine.Your Body needs rest and good diet along with plenty of water.Please consult a healthcare provider.";
+};
+
+document.getElementById("getDiagnosis").addEventListener("click", () => {
+  const symptoms = document.getElementById("symptoms").value.split(",").map(symptom => symptom.trim().toLowerCase());
   const resultDiv = document.getElementById("diagnosisResult");
   const feedbackSection = document.getElementById("feedbackSection");
 
-  if (!symptoms) {
-    alert("Please describe your symptoms.");
+  if (symptoms.length === 0 || symptoms[0] === "") {
+    alert("Please enter some symptoms.");
     return;
   }
 
@@ -36,40 +67,32 @@ document.getElementById("getDiagnosis").addEventListener("click", async () => {
   feedbackSection.hidden = true;
 
   try {
-    const response = await fetch(AI_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "text-davinci-003",
-        prompt: `Patient symptoms: ${symptoms}. Provide a possible diagnosis.`,
-        max_tokens: 150,
-      }),
-    });
+    const diagnosis = diagnose(symptoms);
+    showDiagnosisResult(diagnosis);
 
-    const data = await response.json();
-    const diagnosis = data.choices[0].text.trim();
-    resultDiv.textContent = diagnosis;
-
-    feedbackSection.hidden = false;
-
-    
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(diagnosis);
     synth.speak(utterThis);
   } catch (error) {
-    resultDiv.textContent = "Error fetching diagnosis. Please try again.";
+    showError();
   } finally {
     showLoading(false);
   }
 });
 
-
 document.getElementById("startVoiceInput").addEventListener("click", () => {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = "en-US";
+
+  recognition.onstart = () => {
+    console.log("Voice recognition started");
+    alert("Listening for symptoms...");
+  };
+
+  recognition.onend = () => {
+    console.log("Voice recognition ended");
+    alert("Voice recognition ended.");
+  };
 
   recognition.onresult = (event) => {
     document.getElementById("symptoms").value = event.results[0][0].transcript;
@@ -82,7 +105,6 @@ document.getElementById("startVoiceInput").addEventListener("click", () => {
   recognition.start();
 });
 
-
 document.getElementById("feedbackYes").addEventListener("click", () => {
   alert("Thank you for your feedback!");
   document.getElementById("feedbackSection").hidden = true;
@@ -92,14 +114,3 @@ document.getElementById("feedbackNo").addEventListener("click", () => {
   alert("Thank you! We'll work to improve.");
   document.getElementById("feedbackSection").hidden = true;
 });
-
-
-setInterval(() => {
-  const stepsToday = Math.floor(Math.random() * 10000 + 5000);
-  const heartRate = Math.floor(Math.random() * 20 + 60);
-
-  document.getElementById("stepsToday").textContent = `${stepsToday} steps`;
-  document.getElementById("heartRate").textContent = `${heartRate} bpm`;
-}, 5000);
-
-
