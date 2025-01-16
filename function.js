@@ -1,6 +1,6 @@
 
 const AI_API_URL = "https://api.openai.com/v1/completions";
-const API_KEY = "your-api-key-here"; 
+const API_KEY = "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"; 
 
 
 const showLoading = (isVisible) => {
