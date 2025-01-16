@@ -1,13 +1,13 @@
-// Configuration for the API
-const AI_API_URL = "https://api.openai.com/v1/completions";
-const API_KEY = "your-api-key-here"; // Replace with your OpenAI API key
 
-// Helper to display loading indicator
+const AI_API_URL = "https://api.openai.com/v1/completions";
+const API_KEY = "your-api-key-here"; 
+
+
 const showLoading = (isVisible) => {
   document.getElementById("loadingIndicator").hidden = !isVisible;
 };
 
-// Handle Login
+
 document.getElementById("loginForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const username = document.getElementById("username").value;
@@ -20,7 +20,7 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
   }
 });
 
-// AI Diagnosis
+
 document.getElementById("getDiagnosis").addEventListener("click", async () => {
   const symptoms = document.getElementById("symptoms").value;
   const resultDiv = document.getElementById("diagnosisResult");
@@ -55,7 +55,7 @@ document.getElementById("getDiagnosis").addEventListener("click", async () => {
 
     feedbackSection.hidden = false;
 
-    // Text-to-Speech Output
+    
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(diagnosis);
     synth.speak(utterThis);
@@ -66,7 +66,7 @@ document.getElementById("getDiagnosis").addEventListener("click", async () => {
   }
 });
 
-// Voice Recognition
+
 document.getElementById("startVoiceInput").addEventListener("click", () => {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = "en-US";
@@ -82,7 +82,7 @@ document.getElementById("startVoiceInput").addEventListener("click", () => {
   recognition.start();
 });
 
-// Feedback
+
 document.getElementById("feedbackYes").addEventListener("click", () => {
   alert("Thank you for your feedback!");
   document.getElementById("feedbackSection").hidden = true;
@@ -93,7 +93,7 @@ document.getElementById("feedbackNo").addEventListener("click", () => {
   document.getElementById("feedbackSection").hidden = true;
 });
 
-// Simulate Live Dashboard Updates
+
 setInterval(() => {
   const stepsToday = Math.floor(Math.random() * 10000 + 5000);
   const heartRate = Math.floor(Math.random() * 20 + 60);
